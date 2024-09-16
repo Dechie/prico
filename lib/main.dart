@@ -3,8 +3,6 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'router.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // Check connectivity
   final connectivityResult = await Connectivity().checkConnectivity();
   final hasInternet = connectivityResult[0] != ConnectivityResult.none;
   print('$connectivityResult');

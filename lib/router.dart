@@ -5,6 +5,7 @@ import 'views/auth/logout_view.dart';
 import 'views/home/home_view.dart';
 import 'views/home/orders_view.dart';
 import 'views/profile/profile_view.dart';
+import 'no_internet.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
@@ -21,6 +22,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => OrdersView());
       case '/profile':
         return MaterialPageRoute(builder: (_) => ProfileView());
+      case '/noInternet':
+        return MaterialPageRoute(builder: (_) => NoInternetPage());
       default:
         return MaterialPageRoute(
             builder: (_) => Scaffold(

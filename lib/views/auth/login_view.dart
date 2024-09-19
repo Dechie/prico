@@ -125,7 +125,11 @@ class _LoginViewState extends State<LoginView> {
               width: 300,
               height: 50,
               child: ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/home'),
+                onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  '/home', // Use the named route from the router
+                  (Route<dynamic> route) => false, // Remove all previous routes
+                ),
                 child: Text(
                   'Login',
                   style: TextStyle(
@@ -136,11 +140,9 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color(0xFF9D6DCD),
-                  minimumSize:
-                      Size(300, 50),
+                  minimumSize: Size(300, 50),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        8),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
               ),
@@ -172,11 +174,9 @@ class _LoginViewState extends State<LoginView> {
                 ),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                  minimumSize:
-                      Size(300, 50),
+                  minimumSize: Size(300, 50),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        8), 
+                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
               ),

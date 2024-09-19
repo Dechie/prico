@@ -64,38 +64,51 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: 2, 
+              blurRadius: 5,
+              offset: Offset(0, -2),
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(Icons.home_outlined),
             label: 'home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart_outlined),
             label: 'wishlist',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.search_outlined),
             label: 'search',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.receipt),
+            icon: Icon(Icons.receipt_outlined),
             label: 'ordered',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.person_outlined),
             label: 'profile',
           ),
         ],
         currentIndex: _selectedIndex,
+        backgroundColor:Color(0xFFF5EAFB),
         selectedItemColor: Color(0xFF29006C),
-        backgroundColor: Color(0xFFF5EAFB),
-        unselectedItemColor: Colors.grey,
+        unselectedItemColor: Color(0xFFC6C6C6),
         selectedLabelStyle: TextStyle(
             fontSize: 15, fontFamily: 'Poppins', color: Color(0xFF6600B7)),
         iconSize: 30,
         onTap: _onItemTapped,
       ),
+    ),
     );
   }
 }

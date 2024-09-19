@@ -237,7 +237,8 @@ class _SignupViewState extends State<SignupView> {
                         ),
                         onPressed: () {
                           setState(() {
-                            _obsecureTextConfirmedPassword = !_obsecureTextConfirmedPassword;
+                            _obsecureTextConfirmedPassword =
+                                !_obsecureTextConfirmedPassword;
                           });
                         },
                       ),
@@ -253,7 +254,12 @@ class _SignupViewState extends State<SignupView> {
                   width: 250,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/home'),
+                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      '/home', 
+                      (Route<dynamic> route) =>
+                          false,
+                    ),
                     child: Text(
                       'Signup',
                       style: TextStyle(
@@ -287,7 +293,7 @@ class _SignupViewState extends State<SignupView> {
                   width: 250,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/'),
+                    onPressed: () => Navigator.pushNamed(context, '/login'),
                     child: Text(
                       'Login',
                       style: TextStyle(

@@ -38,7 +38,7 @@ class GuestView extends StatelessWidget{
               child: ElevatedButton(
                 onPressed: () => Navigator.pushNamed(context, '/login'),
                 child: Text(
-                  'Login',
+                  'Sign in',
                   style: TextStyle(
                     fontSize: 17,
                     fontFamily: 'Poppins',

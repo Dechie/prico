@@ -24,7 +24,7 @@ class _SignupViewState extends State<SignupView> {
                   height: 75,
                 ),
                 Text(
-                  'PRICE COMPARE',
+                  'PRICO',
                   style: TextStyle(
                     fontSize: 50,
                     fontFamily: 'Jersey10',
@@ -257,7 +257,7 @@ class _SignupViewState extends State<SignupView> {
                     child: Text(
                       'Signup',
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 16,
                         fontFamily: 'Poppins',
                         color: Colors.white,
                       ),

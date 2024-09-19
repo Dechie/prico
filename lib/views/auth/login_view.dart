@@ -21,7 +21,7 @@ class _LoginViewState extends State<LoginView> {
               height: 75,
             ),
             Text(
-              'PRICE COMPARE',
+              'PRICO',
               style: TextStyle(
                 fontSize: 50,
                 fontFamily: 'Jersey10',

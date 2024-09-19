@@ -18,10 +18,6 @@ class PriceCompareApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Price Compare',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
       initialRoute: initialRoute,
       onGenerateRoute: AppRouter.generateRoute,
     );

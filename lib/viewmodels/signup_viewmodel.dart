@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../services/auth_service.dart';
-import '../models/user_model.dart';
+import '../services/signup_service.dart';
+import '../models/new_user_model.dart';
 
 class SignupViewModel extends ChangeNotifier {
   AuthService _authService = AuthService();

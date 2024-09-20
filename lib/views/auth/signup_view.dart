@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:pricecompare/viewmodels/signup_viewmodel.dart';
 
 class SignupView extends StatefulWidget {
   @override
@@ -6,14 +8,25 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
+  final TextEditingController _firstNameController = TextEditingController();
+  final TextEditingController _middleNameController = TextEditingController();
+  final TextEditingController _lastNameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController = TextEditingController();
+
   bool _obscureText = true;
   bool _obsecureTextConfirmedPassword = true;
 
   @override
   Widget build(BuildContext context) {
+    final signupViewModel = Provider.of<SignupViewModel>(context);
+
     return Scaffold(
-        backgroundColor: Color(0xFFF5EAFB),
-        body: SingleChildScrollView(
+      backgroundColor: Color(0xFFF5EAFB),
+      body: Padding(
+        padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
+        child: SingleChildScrollView(
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -37,215 +50,36 @@ class _SignupViewState extends State<SignupView> {
                         fontFamily: 'Poppins',
                         color: Color(0xFF6600B7))),
                 SizedBox(height: 16),
-                Container(
-                  height: 40,
-                  width: 250,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'First Name',
-                      labelStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Poppins',
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // First Name
+                _buildTextField(_firstNameController, 'First Name'),
                 SizedBox(height: 16),
-                Container(
-                  height: 40,
-                  width: 250,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Middle Name',
-                      labelStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Poppins',
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Middle Name
+                _buildTextField(_middleNameController, 'Middle Name'),
                 SizedBox(height: 16),
-                Container(
-                  height: 40,
-                  width: 250,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Last Name',
-                      labelStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Poppins',
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Last Name
+                _buildTextField(_lastNameController, 'Last Name'),
                 SizedBox(height: 16),
-                Container(
-                  height: 40,
-                  width: 250,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                      labelStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Poppins',
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                // Email
+                _buildTextField(_emailController, 'Email'),
                 SizedBox(height: 16),
-                Container(
-                  height: 40,
-                  width: 250,
-                  child: TextField(
-                    obscureText: _obscureText,
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                      labelStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Poppins',
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obscureText
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Color(0xFF9D6DCD),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obscureText = !_obscureText;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                // Password
+                _buildPasswordField(
+                    _passwordController, 'Password', _obscureText, () {
+                  setState(() {
+                    _obscureText = !_obscureText;
+                  });
+                }),
                 SizedBox(height: 16),
-                Container(
-                  height: 40,
-                  width: 250,
-                  child: TextField(
-                    obscureText: _obsecureTextConfirmedPassword,
-                    decoration: InputDecoration(
-                      labelText: 'Confirm Password',
-                      labelStyle: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w300,
-                        fontFamily: 'Poppins',
-                      ),
-                      border: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color(0xFF9D6DCD),
-                        ),
-                      ),
-                      suffixIcon: IconButton(
-                        icon: Icon(
-                          _obsecureTextConfirmedPassword
-                              ? Icons.visibility
-                              : Icons.visibility_off,
-                          color: Color(0xFF9D6DCD),
-                        ),
-                        onPressed: () {
-                          setState(() {
-                            _obsecureTextConfirmedPassword =
-                                !_obsecureTextConfirmedPassword;
-                          });
-                        },
-                      ),
-                    ),
-                  ),
-                ),
+                // Confirm Password
+                _buildPasswordField(_confirmPasswordController,
+                    'Confirm Password', _obsecureTextConfirmedPassword, () {
+                  setState(() {
+                    _obsecureTextConfirmedPassword =
+                        !_obsecureTextConfirmedPassword;
+                  });
+                }),
                 SizedBox(height: 16),
+                // Signup Button
                 Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
@@ -254,12 +88,41 @@ class _SignupViewState extends State<SignupView> {
                   width: 250,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () => Navigator.pushNamedAndRemoveUntil(
-                      context,
-                      '/home', 
-                      (Route<dynamic> route) =>
-                          false,
-                    ),
+                    onPressed: () async {
+                      await signupViewModel.registerUser(
+                        _firstNameController.text,
+                        _middleNameController.text,
+                        _lastNameController.text,
+                        _emailController.text,
+                        _passwordController.text,
+                        _confirmPasswordController.text,
+                      );
+                      print(signupViewModel.token);
+                      final message = signupViewModel.errorMessage ?? signupViewModel.successMessage;
+                      if (message != null) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            backgroundColor: Colors.black,
+                            content: Text(
+                              message,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Jersey10',
+                                fontSize: 20,
+                                color: Colors.white
+                              ),
+                              )
+                            ),
+                        );
+                      }
+                      if (signupViewModel.errorMessage == null) {
+                        Navigator.pushNamedAndRemoveUntil(
+                          context,
+                          '/home',
+                          (Route<dynamic> route) => false,
+                        );
+                      }
+                    },
                     child: Text(
                       'Signup',
                       style: TextStyle(
@@ -285,36 +148,105 @@ class _SignupViewState extends State<SignupView> {
                     color: Colors.black,
                   ),
                 ),
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(color: Color(0xFF9B1DFF)),
-                  ),
-                  width: 250,
-                  height: 40,
-                  child: ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/login'),
-                    child: Text(
-                      'Login',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Poppins',
-                        color: Color(0xFF9B1DFF),
-                      ),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                      minimumSize: Size(250, 40),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                    ),
-                  ),
-                ),
+                _buildLoginButton(context),
               ],
             ),
           ),
-        ));
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(TextEditingController controller, String label) {
+    return Container(
+      height: 60,
+      width: 250,
+      child: TextField(
+        controller: controller,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w300,
+            fontFamily: 'Poppins',
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF9D6DCD)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF9D6DCD)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF9D6DCD)),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildPasswordField(TextEditingController controller, String label,
+      bool obscureText, VoidCallback toggle) {
+    return Container(
+      height: 60,
+      width: 250,
+      child: TextField(
+        controller: controller,
+        obscureText: obscureText,
+        decoration: InputDecoration(
+          labelText: label,
+          labelStyle: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w300,
+            fontFamily: 'Poppins',
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF9D6DCD)),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF9D6DCD)),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Color(0xFF9D6DCD)),
+          ),
+          suffixIcon: IconButton(
+            icon: Icon(
+              obscureText ? Icons.visibility : Icons.visibility_off,
+              color: Color(0xFF9D6DCD),
+            ),
+            onPressed: toggle,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLoginButton(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: Color(0xFF9B1DFF)),
+      ),
+      width: 250,
+      height: 40,
+      child: ElevatedButton(
+        onPressed: () => Navigator.pushNamed(context, '/login'),
+        child: Text(
+          'Login',
+          style: TextStyle(
+            fontSize: 15,
+            fontWeight: FontWeight.w600,
+            fontFamily: 'Poppins',
+            color: Color(0xFF9B1DFF),
+          ),
+        ),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+          minimumSize: Size(250, 40),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+      ),
+    );
   }
 }

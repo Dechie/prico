@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pricecompare/viewmodels/signup_viewmodel.dart';
 
 class SignupView extends StatefulWidget {
@@ -102,16 +103,17 @@ class _SignupViewState extends State<SignupView> {
                       if (message != null) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            backgroundColor: Colors.black,
+                            backgroundColor: Color(0xFFF5EAFB),
                             content: Text(
                               message,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontFamily: 'Jersey10',
-                                fontSize: 20,
-                                color: Colors.white
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Color(0xFF6600B7)
                               ),
-                              )
+                              ),
+                              duration: Duration(seconds: 1),
                             ),
                         );
                       }

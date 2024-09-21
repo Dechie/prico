@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pricecompare/services/login_service.dart';
-import 'package:pricecompare/models/login_response_model.dart';
 
 class LoginViewModel extends ChangeNotifier {
   final LoginService _authService = LoginService();
@@ -22,10 +22,27 @@ class LoginViewModel extends ChangeNotifier {
     if (response != null) {
       _message = response.message;
       _token = response.token;
+      print('Login successful. Token: $_token');
+      await _saveToken(_token!);
     } else {
       _message = "Login failed.";
     }
 
     notifyListeners();
+  }
+
+  Future<void> _saveToken(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setString('auth_token', token);
+  }
+
+  Future<String?> getToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.getString('auth_token');
+  }
+
+  Future<void> removeToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('auth_token');
   }
 }

@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'router.dart';
 import 'viewmodels/signup_viewmodel.dart';
 import 'viewmodels/login_viewmodel.dart';
+import 'viewmodels/logout_viewmodel.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +25,7 @@ class PriceCompareApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SignupViewModel()),
         ChangeNotifierProvider(create: (_) => LoginViewModel()),
+        ChangeNotifierProvider(create: (_) => LogoutViewModel()),
       ],
       child: MaterialApp(
         initialRoute: initialRoute,

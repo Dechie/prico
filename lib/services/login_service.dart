@@ -16,7 +16,6 @@ class LoginService {
       if (response.statusCode == 201) {
         return LoginResponse.fromJson(jsonDecode(response.body));
       } else {
-        // Handle error
         print("Error: ${response.body}");
         return null;
       }

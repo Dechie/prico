@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pricecompare/services/login_service.dart';
-import 'package:pricecompare/viewmodels/login_viewmodel.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginView extends StatefulWidget {
   @override
@@ -21,6 +21,8 @@ class _LoginViewState extends State<LoginView> {
       final response = await _loginService.login(email, password);
       if (response != null) {
         print(response.token.toString());
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        await prefs.setString('auth_token', response.token);
         _showSnackbar(response.message);
         Navigator.pushNamedAndRemoveUntil(
           context,
@@ -38,14 +40,14 @@ class _LoginViewState extends State<LoginView> {
   void _showSnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Color(0xFFF5EAFB),
         content: Text(
           message,
           textAlign: TextAlign.center,
           style: TextStyle(
-              fontFamily: 'Jersey10', fontSize: 20, color: Colors.white),
+              fontFamily: 'Poppins', fontSize: 15, color: Color(0xFF6600B7)),
         ),
-        duration: Duration(seconds: 2),
+        duration: Duration(seconds: 1),
       ),
     );
   }

@@ -12,7 +12,10 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => GuestView());
+        return MaterialPageRoute(
+          builder: (_) => GuestView(),
+          settings: RouteSettings(arguments: {'isReplacement': true}),
+          );
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginView());
       case '/signup':

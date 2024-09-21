@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:heroicons/heroicons.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pricecompare/viewmodels/logout_viewmodel.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -9,8 +11,6 @@ class ProfilePage extends StatefulWidget {
 
 class _ProfilePageState extends State<ProfilePage> {
   bool isBusinessAccount = false;
-
-
 
   @override
   void initState() {
@@ -246,7 +246,32 @@ class _ProfilePageState extends State<ProfilePage> {
                 width: 100,
                 height: 40,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    bool isLoggedOut = await Provider.of<LogoutViewModel>(
+                            context,
+                            listen: false)
+                        .logout();
+
+                    if (isLoggedOut) {
+                      Navigator.pushReplacementNamed(context, '/');
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          backgroundColor: Color(0xFFF5EAFB),
+                          duration: Duration(seconds: 1),
+                            content: 
+                            Text('Logout failed. Please try again.',
+                            textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Color(0xFF6600B7)
+                              ),
+                            )
+                            ),
+                      );
+                    }
+                  },
                   child: Text(
                     'Logout',
                     textAlign: TextAlign.center,

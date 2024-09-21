@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'views/auth/login_view.dart';
 import 'views/auth/signup_view.dart';
 import 'views/home/home_view.dart';
+import 'views/home/guest_home_view.dart';
+import 'views/home/vendor_home_view.dart';
 import 'views/auth/guest.dart';
 import 'views/product/product_details_view.dart';
 import 'no_internet.dart';
@@ -15,11 +17,18 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => LoginView());
       case '/signup':
         return MaterialPageRoute(builder: (_) => SignupView());
-      case '/home':
+      case '/userhome':
         return MaterialPageRoute(
           builder: (_) => HomeView(),
           settings: RouteSettings(arguments: {'isReplacement': true}),
         );
+      case '/vendorhome':
+        return MaterialPageRoute(
+          builder: (_) => VendorHomeView(),
+          settings: RouteSettings(arguments: {'isReplacement': true}),
+        );
+      case '/guesthome':
+        return MaterialPageRoute(builder: (_) => GuestHomeView());
       case '/details':
         if (settings.arguments is Map) {
           final args = settings.arguments as Map;

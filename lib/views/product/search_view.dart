@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pricecompare/views/product/product_details_view.dart';
+import 'package:heroicons/heroicons.dart';
 
 class Product {
   final String title;
@@ -191,7 +192,7 @@ class SearchPage extends StatelessWidget {
                 ),
                 IconButton(
                   color: Color(0xFF29006C),
-                  icon: Icon(Icons.filter_list),
+                  icon: HeroIcon(HeroIcons.adjustmentsHorizontal),
                   onPressed: () {
                     _showFilterDialog(context);
                   },
@@ -217,7 +218,7 @@ class SearchPage extends StatelessWidget {
         onPressed: () {
           // Action for barcode icon
         },
-        child: Icon(Icons.qr_code_rounded),
+        child: HeroIcon(HeroIcons.qrCode),
       ),
     );
   }

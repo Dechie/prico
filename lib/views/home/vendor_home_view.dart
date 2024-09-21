@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:pricecompare/views/product/product_list_view.dart';
 import 'package:pricecompare/views/product/wishlist_view.dart';
 import 'package:pricecompare/views/product/ordered_view.dart';
-import 'package:pricecompare/views/product/search_view.dart';
 import 'package:pricecompare/views/profile/profile_view.dart';
 import 'package:heroicons/heroicons.dart';
 
-class HomeView extends StatefulWidget {
+class VendorHomeView extends StatefulWidget {
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _VendorHomeViewState createState() => _VendorHomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _VendorHomeViewState extends State<VendorHomeView> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
     WishlistPage(),
-    SearchPage(),
     OrderedPage(),
     ProfilePage(),
   ];
@@ -80,20 +76,12 @@ class _HomeViewState extends State<HomeView> {
         type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: HeroIcon(HeroIcons.home),
-            label: 'home',
+            icon: HeroIcon(HeroIcons.rectangleStack),
+            label: 'my items',
           ),
           BottomNavigationBarItem(
-            icon: HeroIcon(HeroIcons.shoppingCart),
-            label: 'wishlist',
-          ),
-          BottomNavigationBarItem(
-            icon: HeroIcon(HeroIcons.magnifyingGlass),
-            label: 'search',
-          ),
-          BottomNavigationBarItem(
-            icon: HeroIcon(HeroIcons.queueList),
-            label: 'ordered',
+            icon: HeroIcon(HeroIcons.clipboardDocumentList),
+            label: 'orders',
           ),
           BottomNavigationBarItem(
             icon: HeroIcon(HeroIcons.userCircle),
@@ -116,6 +104,6 @@ class _HomeViewState extends State<HomeView> {
 
 void main() {
   runApp(MaterialApp(
-    home: HomeView(),
+    home: VendorHomeView(),
   ));
 }

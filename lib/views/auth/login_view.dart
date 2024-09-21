@@ -24,7 +24,7 @@ class _LoginViewState extends State<LoginView> {
         _showSnackbar(response.message);
         Navigator.pushNamedAndRemoveUntil(
           context,
-          '/home',
+          '/userhome',
           (Route<dynamic> route) => false,
         );
       } else {

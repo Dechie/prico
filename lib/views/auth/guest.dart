@@ -72,7 +72,7 @@ class GuestView extends StatelessWidget{
               width: 300,
               height: 50,
               child: ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, '/home'),
+                onPressed: () => Navigator.pushNamed(context, '/guesthome'),
                 child: Text(
                   'Continue as Guest',
                   style: TextStyle(

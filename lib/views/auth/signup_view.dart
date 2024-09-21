@@ -118,7 +118,7 @@ class _SignupViewState extends State<SignupView> {
                       if (signupViewModel.errorMessage == null) {
                         Navigator.pushNamedAndRemoveUntil(
                           context,
-                          '/home',
+                          '/userhome',
                           (Route<dynamic> route) => false,
                         );
                       }

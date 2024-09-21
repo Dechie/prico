@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:pricecompare/models/login_response_model.dart';
 
 class LoginService {
-  final String baseUrl = "http://192.168.1.3:8000/api/auth/login";
+  final String baseUrl = "http://192.168.1.6:8000/api/auth/login";
 
   Future<LoginResponse?> login(String email, String password) async {
     try {

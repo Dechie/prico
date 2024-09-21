@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:pricecompare/views/auth/must_auth.dart';
 import 'package:pricecompare/views/product/product_list_view.dart';
-import 'package:pricecompare/views/product/wishlist_view.dart';
-import 'package:pricecompare/views/product/ordered_view.dart';
 import 'package:pricecompare/views/product/search_view.dart';
-import 'package:pricecompare/views/profile/profile_view.dart';
 import 'package:heroicons/heroicons.dart';
 
-class HomeView extends StatefulWidget {
+class GuestHomeView extends StatefulWidget {
   @override
-  _HomeViewState createState() => _HomeViewState();
+  _GuestHomeViewState createState() => _GuestHomeViewState();
 }
 
-class _HomeViewState extends State<HomeView> {
+class _GuestHomeViewState extends State<GuestHomeView> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    WishlistPage(),
+    MustAuthPage(),
     SearchPage(),
-    OrderedPage(),
-    ProfilePage(),
+    MustAuthPage(),
+    MustAuthPage()
   ];
 
   void _onItemTapped(int index) {
@@ -116,6 +114,6 @@ class _HomeViewState extends State<HomeView> {
 
 void main() {
   runApp(MaterialApp(
-    home: HomeView(),
+    home: GuestHomeView(),
   ));
 }

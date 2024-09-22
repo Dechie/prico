@@ -40,6 +40,7 @@ class _LoginViewState extends State<LoginView> {
   void _showSnackbar(String message) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
+        behavior: SnackBarBehavior.floating,
         backgroundColor: Color(0xFFF5EAFB),
         content: Text(
           message,

@@ -103,6 +103,7 @@ class _SignupViewState extends State<SignupView> {
                       if (message != null) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
+                            behavior: SnackBarBehavior.floating,
                             backgroundColor: Color(0xFFF5EAFB),
                             content: Text(
                               message,

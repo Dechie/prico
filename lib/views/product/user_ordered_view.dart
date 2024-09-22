@@ -102,7 +102,7 @@ class ProductCard extends StatelessWidget {
   }
 }
 
-class OrderedPage extends StatelessWidget {
+class UserOrderedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<Product> products = [
@@ -159,4 +159,4 @@ class OrderedPage extends StatelessWidget {
   }
 }
 
-void main() => runApp(MaterialApp(home: OrderedPage()));
+void main() => runApp(MaterialApp(home: UserOrderedPage()));

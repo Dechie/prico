@@ -34,7 +34,7 @@ class LogoutService {
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 204) {
       return "Logout successful";
     } else {
       final data = jsonDecode(response.body);

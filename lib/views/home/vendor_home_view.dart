@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pricecompare/views/product/wishlist_view.dart';
-import 'package:pricecompare/views/product/ordered_view.dart';
+import 'package:pricecompare/views/product/my_items.dart';
+import 'package:pricecompare/views/product/vendor_ordered_view.dart';
 import 'package:pricecompare/views/profile/profile_view.dart';
 import 'package:heroicons/heroicons.dart';
 
@@ -13,8 +13,8 @@ class _VendorHomeViewState extends State<VendorHomeView> {
   int _selectedIndex = 0;
 
   static List<Widget> _widgetOptions = <Widget>[
-    WishlistPage(),
-    OrderedPage(),
+    MyItemsPage(),
+    VendorOrderedPage(),
     ProfilePage(),
   ];
 

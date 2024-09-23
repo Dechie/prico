@@ -22,7 +22,7 @@ class ProductService {
           title: product['title'],
           description: product['description'],
           price: product['price'].toDouble(),
-          imageUrl: product['image_urls'][0], // Getting the first image URL
+          imageUrl: product['image_urls'][0],
           categoryName: category['name'],
         );
       }).toList();

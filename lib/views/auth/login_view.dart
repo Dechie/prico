@@ -158,18 +158,7 @@ class _LoginViewState extends State<LoginView> {
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Forgot Password?',
-                      style: TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w600,
-                        fontFamily: 'Poppins',
-                        color: Color(0xFF9B1DFF),
-                      ),
-                    ),
-                  ),
+                  SizedBox(height: 20),
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),

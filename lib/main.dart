@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pricecompare/viewmodels/vendor_products_viewmodel.dart';
 import 'package:provider/provider.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'router.dart';
@@ -31,8 +32,10 @@ class PriceCompareApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LogoutViewModel()),
         ChangeNotifierProvider(create: (_) => VendorViewModel()),
         ChangeNotifierProvider(create: (_) => ProductViewModel(productService: ProductService(baseUrl: 'http://192.168.1.6:8000/api'))),
+        ChangeNotifierProvider(create: (_) => VendorProductViewModel()), 
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         initialRoute: initialRoute,
         onGenerateRoute: AppRouter.generateRoute,
       ),

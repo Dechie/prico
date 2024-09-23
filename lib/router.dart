@@ -36,7 +36,7 @@ class AppRouter {
         if (settings.arguments is Map) {
           final args = settings.arguments as Map;
           return MaterialPageRoute(
-            builder: (_) => DetailsView(title: args['title']),
+            builder: (_) => DetailsView(productId: args['title']),
           );
         }
         return _errorRoute();

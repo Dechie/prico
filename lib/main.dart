@@ -5,6 +5,9 @@ import 'router.dart';
 import 'viewmodels/signup_viewmodel.dart';
 import 'viewmodels/login_viewmodel.dart';
 import 'viewmodels/logout_viewmodel.dart';
+import 'viewmodels/vendor_register_viewmodel.dart';
+import 'viewmodels/product_viewmodel.dart';
+import 'package:pricecompare/services/product_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,6 +29,8 @@ class PriceCompareApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => SignupViewModel()),
         ChangeNotifierProvider(create: (_) => LoginViewModel()),
         ChangeNotifierProvider(create: (_) => LogoutViewModel()),
+        ChangeNotifierProvider(create: (_) => VendorViewModel()),
+        ChangeNotifierProvider(create: (_) => ProductViewModel(productService: ProductService(baseUrl: 'http://192.168.1.6:8000/api'))),
       ],
       child: MaterialApp(
         initialRoute: initialRoute,

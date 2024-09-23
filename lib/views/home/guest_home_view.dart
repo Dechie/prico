@@ -14,7 +14,6 @@ class _GuestHomeViewState extends State<GuestHomeView> {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    MustAuthPage(),
     SearchPage(),
     MustAuthPage(),
     MustAuthPage()
@@ -80,10 +79,6 @@ class _GuestHomeViewState extends State<GuestHomeView> {
           BottomNavigationBarItem(
             icon: HeroIcon(HeroIcons.home),
             label: 'home',
-          ),
-          BottomNavigationBarItem(
-            icon: HeroIcon(HeroIcons.shoppingCart),
-            label: 'wishlist',
           ),
           BottomNavigationBarItem(
             icon: HeroIcon(HeroIcons.magnifyingGlass),

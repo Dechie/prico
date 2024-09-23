@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class DetailsView extends StatelessWidget {
-  final String title;
+  final String productId;
 
-  DetailsView({required this.title});
+  DetailsView({required this.productId});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(title),
+        title: Text(productId.toString()),
       ),
       body: Center(
-        child: Text('Details of $title'),
+        child: Text('Details of $productId'),
       ),
     );
   }

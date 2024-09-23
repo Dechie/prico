@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:heroicons/heroicons.dart';
+import 'package:pricecompare/views/product/product_add_dialog.dart';
 import 'package:pricecompare/views/product/product_details_view.dart';
+import 'package:pricecompare/viewmodels/product_add_viewmodel.dart';
 
 class Product {
   final String title;
   final String description;
   final String image;
   final String price;
-  final double rating;
 
-  Product({
-    required this.title,
-    required this.description,
-    required this.image,
-    required this.price,
-    required this.rating,
-  });
+  Product(
+      {required this.title,
+      required this.description,
+      required this.image,
+      required this.price});
 }
 
 class ProductCard extends StatelessWidget {
@@ -30,7 +30,7 @@ class ProductCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => DetailsView(title: product.title),
+            builder: (context) => DetailsView(productId: product.title),
           ),
         );
       },
@@ -61,19 +61,7 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    children: [
-                      Icon(Icons.star, color: Colors.amber),
-                      Text(
-                        '${product.rating}/5',
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.w300,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFFFF00B8),
-                        ),
-                        textAlign: TextAlign.left,
-                      ),
-                    ],
+                    children: [],
                   ),
                   Text(
                     product.description,
@@ -113,35 +101,28 @@ class MyItemsPage extends StatefulWidget {
 }
 
 class _MyItemsPageState extends State<MyItemsPage> {
+  final AddProductViewModel _viewModel = AddProductViewModel();
   List<Product> products = [
     Product(
-      title: 'Alien Ware 15',
-      description: 'New Laptop Alienware Area-51m 16GB Intel Core I5 SSD 1T',
-      image: 'assets/sponsored1.png',
-      price: '1,500',
-      rating: 4.5,
-    ),
+        title: 'Alien Ware 15',
+        description: 'New Laptop Alienware Area-51m 16GB Intel Core I5 SSD 1T',
+        image: 'assets/sponsored1.png',
+        price: '1,500'),
     Product(
-      title: 'Alien Ware 15',
-      description: 'New Laptop Alienware Area-51m 16GB Intel Core I5 SSD 1T',
-      image: 'assets/sponsored1.png',
-      price: '1,500',
-      rating: 4.5,
-    ),
+        title: 'Alien Ware 15',
+        description: 'New Laptop Alienware Area-51m 16GB Intel Core I5 SSD 1T',
+        image: 'assets/sponsored1.png',
+        price: '1,500'),
     Product(
-      title: 'Alien Ware 15',
-      description: 'New Laptop Alienware Area-51m 16GB Intel Core I5 SSD 1T',
-      image: 'assets/sponsored1.png',
-      price: '1,500',
-      rating: 4.5,
-    ),
+        title: 'Alien Ware 15',
+        description: 'New Laptop Alienware Area-51m 16GB Intel Core I5 SSD 1T',
+        image: 'assets/sponsored1.png',
+        price: '1,500'),
     Product(
-      title: 'Alien Ware 15',
-      description: 'New Laptop Alienware Area-51m 16GB Intel Core I5 SSD 1T',
-      image: 'assets/sponsored1.png',
-      price: '1,500',
-      rating: 4.5,
-    ),
+        title: 'Alien Ware 15',
+        description: 'New Laptop Alienware Area-51m 16GB Intel Core I5 SSD 1T',
+        image: 'assets/sponsored1.png',
+        price: '1,500'),
   ];
 
   void _deleteProduct(int index) {
@@ -157,7 +138,7 @@ class _MyItemsPageState extends State<MyItemsPage> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(height: 10), // Add padding for better spacing
+          SizedBox(height: 10),
           Expanded(
             child: ListView.builder(
               itemCount: products.length,
@@ -174,6 +155,17 @@ class _MyItemsPageState extends State<MyItemsPage> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+  onPressed: () {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return ProductAddDialog(viewModel: _viewModel,);
+      },
+    );
+  },
+  child: HeroIcon(HeroIcons.plus, style: HeroIconStyle.solid),
+),
     );
   }
 }

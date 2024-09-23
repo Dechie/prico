@@ -3,6 +3,8 @@ import 'package:heroicons/heroicons.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:pricecompare/viewmodels/logout_viewmodel.dart';
+import 'package:pricecompare/viewmodels/vendor_register_viewmodel.dart';
+import '../profile/vendor_dialog.dart';
 
 class ProfilePage extends StatefulWidget {
   @override
@@ -59,16 +61,11 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               SizedBox(height: 20),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('Info',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontFamily: 'Poppins',
-                          color: Color(0xFF7C0090))),
                   Row(
                     children: [
-                      Text('U',
+                      Text('Buyer',
                           style: TextStyle(
                               fontSize: 16,
                               fontFamily: 'Poppins',
@@ -95,7 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           }
                         },
                       ),
-                      Text('B',
+                      Text('Vendor',
                           style: TextStyle(
                               fontSize: 16,
                               fontFamily: 'Poppins',
@@ -104,7 +101,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ],
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 50),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
@@ -134,7 +131,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              SizedBox(height: 250),
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
@@ -150,22 +147,21 @@ class _ProfilePageState extends State<ProfilePage> {
                         .logout();
 
                     if (isLoggedOut) {
+                      _saveAccountType(false);
                       Navigator.pushReplacementNamed(context, '/');
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          backgroundColor: Color(0xFFF5EAFB),
-                          duration: Duration(seconds: 1),
-                            content: 
-                            Text('Logout failed. Please try again.',
-                            textAlign: TextAlign.center,
+                            backgroundColor: Color(0xFFF5EAFB),
+                            duration: Duration(seconds: 1),
+                            content: Text(
+                              'Logout failed. Please try again.',
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontFamily: 'Poppins',
-                                fontSize: 15,
-                                color: Color(0xFF6600B7)
-                              ),
-                            )
-                            ),
+                                  fontFamily: 'Poppins',
+                                  fontSize: 15,
+                                  color: Color(0xFF6600B7)),
+                            )),
                       );
                     }
                   },
@@ -193,61 +189,14 @@ class _ProfilePageState extends State<ProfilePage> {
       ),
     );
   }
+
   void _showUpgradeToBusinessDialog(BuildContext context) {
     showDialog(
       context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(
-            'Enter TIN number',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 20,
-              fontFamily: 'Poppins',
-              color: Color(0xFF29006C),
-            ),
-          ),
-          content: TextField(
-            decoration: InputDecoration(
-                labelText: 'TIN Number',
-                labelStyle: TextStyle(
-                  fontSize: 15,
-                  fontFamily: 'Poppins',
-                  color: Color(0xFF29006C),
-                )),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                'Cancel',
-                style: TextStyle(
-                  color: Color(0xFF9B1DFF),
-                  fontSize: 16,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text(
-                'Upgrade',
-                style: TextStyle(
-                  color: Color(0xFF9B1DFF),
-                  fontSize: 16,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ],
-        );
-      },
+      builder: (context) => ChangeNotifierProvider<VendorViewModel>(
+        create: (_) => VendorViewModel(),
+        child: VendorRegisterDialog(),
+      ),
     );
   }
 }

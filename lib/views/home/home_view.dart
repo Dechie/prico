@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pricecompare/views/product/product_list_view.dart';
-import 'package:pricecompare/views/product/wishlist_view.dart';
 import 'package:pricecompare/views/product/user_ordered_view.dart';
 import 'package:pricecompare/views/product/search_view.dart';
 import 'package:pricecompare/views/profile/profile_view.dart';
@@ -16,7 +15,6 @@ class _HomeViewState extends State<HomeView> {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    WishlistPage(),
     SearchPage(),
     UserOrderedPage(),
     ProfilePage(),
@@ -82,10 +80,6 @@ class _HomeViewState extends State<HomeView> {
           BottomNavigationBarItem(
             icon: HeroIcon(HeroIcons.home),
             label: 'home',
-          ),
-          BottomNavigationBarItem(
-            icon: HeroIcon(HeroIcons.shoppingCart),
-            label: 'wishlist',
           ),
           BottomNavigationBarItem(
             icon: HeroIcon(HeroIcons.magnifyingGlass),

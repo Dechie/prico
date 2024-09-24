@@ -18,7 +18,7 @@ class ProductService {
 
       return products.map((product) {
         return Product(
-          productId: product['product_id'],
+          productId: product['id'],
           title: product['title'],
           description: product['description'],
           price: product['price'].toDouble(),

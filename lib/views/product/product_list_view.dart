@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:pricecompare/views/product/product_details_view.dart';
-import 'package:pricecompare/models/product_model.dart';
 import 'package:pricecompare/viewmodels/product_viewmodel.dart';
 
 class CustomCard extends StatelessWidget {
@@ -203,7 +202,13 @@ final List<String> categorySlugs = [
   body: viewModel.isLoading
       ? Center(child: CircularProgressIndicator())
       : viewModel.errorMessage.isNotEmpty
-          ? Center(child: Text(viewModel.errorMessage))
+          ? Center(child: Text(viewModel.errorMessage,
+                  style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Color(0xFF6600B7)
+                              ),
+          ))
           : ListView(
               children: categorySlugs.map((slug) {
                 final products = viewModel.categoryProducts[slug] ?? [];

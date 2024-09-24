@@ -83,7 +83,7 @@ class VendorProductService {
 
     factory Product.fromJson(Map<String, dynamic> json) {
       return Product(
-        productId: json['product_id'],
+        productId: json['id'],
         title: json['title'],
         description: json['description'],
         image: json['image_urls'][0],

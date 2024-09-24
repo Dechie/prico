@@ -89,7 +89,7 @@ class _LoginViewState extends State<LoginView> {
                     height: 50,
                     width: 300,
                     child: TextField(
-                      controller: _emailController, // Set the controller
+                      controller: _emailController, 
                       decoration: InputDecoration(
                         labelText: 'Email',
                         labelStyle: TextStyle(

@@ -101,9 +101,21 @@ class _MyItemsPageState extends State<MyItemsPage> {
           if (viewModel.isLoading) {
             return Center(child: CircularProgressIndicator());
           } else if (viewModel.errorMessage.isNotEmpty) {
-            return Center(child: Text(viewModel.errorMessage));
+            return Center(child: Text(viewModel.errorMessage,
+                  style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Color(0xFF6600B7)
+                              ),
+            ));
           } else if (viewModel.products.isEmpty) {
-            return Center(child: Text('No products available'));
+            return Center(child: Text('No products available',
+                  style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontSize: 15,
+                                color: Color(0xFF6600B7)
+                              ),
+            ));
           }
 
           return Column(

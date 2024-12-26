@@ -1,11 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pricecompare/services/network_utils.dart';
 
 class LogoutService {
-  final String _logoutUrl = 'http://192.168.1.6:8000/api/auth/logout';
+  Future<String> getLogoutUrl() async {
+  String ipAddress = await getLocalIpAddress();
+  return 'http://$ipAddress:8000/api/auth/logout';
+}
 
   Future<String?> logout() async {
+    String logoutUrl = await getLogoutUrl();
     print('Preparing to logout...');
   try {
     print('Preparing to retrieve token...');
@@ -23,7 +28,7 @@ class LogoutService {
 
     print('Making API call to logout...');
     final response = await http.post(
-      Uri.parse(_logoutUrl),
+      Uri.parse(logoutUrl),
       headers: {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',

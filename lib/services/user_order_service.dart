@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pricecompare/services/network_utils.dart';
 
 class Product {
   final String title;
@@ -17,15 +18,18 @@ class Product {
 }
 
 class UserOrderService {
-  final String ordersUrl = 'http://192.168.1.6:8000/api/user/orders';
-  final String productDetailsUrl = 'http://192.168.1.6:8000/api/product/';
+  Future<String> getBaseUrl() async {
+    String ipAddress = await getLocalIpAddress();
+    return 'http://$ipAddress:8000/api';
+  }
 
   Future<List<Product>> fetchUserOrders() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('auth_token');
 
+    String baseUrl = await getBaseUrl();
     final response = await http.get(
-      Uri.parse(ordersUrl),
+      Uri.parse('$baseUrl/user/orders'),
       headers: {
         'Authorization': 'Bearer $token',
         'Content-Type': 'application/json',
@@ -39,7 +43,7 @@ class UserOrderService {
 
       for (var order in orders) {
         int productId = order['product_id'];
-        var productDetail = await fetchProductDetails(productId);
+        var productDetail = await fetchProductDetails(baseUrl, productId);
         if (productDetail != null) {
           productsDetails.add(productDetail);
         }
@@ -51,9 +55,9 @@ class UserOrderService {
     }
   }
 
-  Future<Product?> fetchProductDetails(int productId) async {
+  Future<Product?> fetchProductDetails(String baseUrl, int productId) async {
     final response = await http.get(
-      Uri.parse('$productDetailsUrl$productId'),
+      Uri.parse('$baseUrl/product/$productId'),
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',

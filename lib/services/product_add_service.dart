@@ -2,9 +2,13 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path/path.dart';
+import 'package:pricecompare/services/network_utils.dart';
 
 class AddProductService {
-  final String _baseUrl = 'http://192.168.1.6:8000/api/product/add'; // Your API endpoint
+  Future<String> getBaseUrl() async {
+    String ipAddress = await getLocalIpAddress();
+    return 'http://$ipAddress:8000/api/product/add';
+  }
 
   Future<void> addProduct({
     required String title,
@@ -16,13 +20,14 @@ class AddProductService {
     required List<File> images,
   }) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? authToken = prefs.getString('auth_token'); // Get auth token from Shared Preferences
+    String? authToken = prefs.getString('auth_token');
 
     if (authToken == null) {
       throw Exception("Authorization token not found");
     }
 
-    var request = http.MultipartRequest('POST', Uri.parse(_baseUrl));
+    String baseUrl = await getBaseUrl();
+    var request = http.MultipartRequest('POST', Uri.parse(baseUrl));
 
     request.headers['Authorization'] = 'Bearer $authToken';
     request.fields['title'] = title;
@@ -32,7 +37,6 @@ class AddProductService {
     request.fields['category_id'] = categoryId;
     request.fields['remaining_stock'] = remainingStock;
 
-    // Attach the images to the request
     for (var image in images) {
       var stream = http.ByteStream(image.openRead());
       var length = await image.length();
@@ -43,7 +47,6 @@ class AddProductService {
       request.files.add(multipartFile);
     }
 
-    // Send the request
     var response = await request.send();
 
     if (response.statusCode == 201) {

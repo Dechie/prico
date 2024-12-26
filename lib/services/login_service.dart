@@ -1,12 +1,17 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:pricecompare/models/login_response_model.dart';
+import 'package:pricecompare/services/network_utils.dart';
 
 class LoginService {
-  final String baseUrl = "http://192.168.1.6:8000/api/auth/login";
+  Future<String> getBaseUrl() async {
+    String ipAddress = await getLocalIpAddress();
+    return 'http://$ipAddress:8000/api/auth/login';
+  }
 
   Future<LoginResponse?> login(String email, String password) async {
     try {
+      String baseUrl = await getBaseUrl();
       final response = await http.post(
         Uri.parse(baseUrl),
         headers: {"Content-Type": "application/json"},

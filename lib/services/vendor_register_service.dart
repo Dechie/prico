@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pricecompare/services/network_utils.dart';
 
 class VendorService {
   Future<String> registerVendor(String licenseNumber, File licenseFile) async {
@@ -11,9 +12,10 @@ class VendorService {
       return 'No token found';
     }
 
+    String ipAddress = await getLocalIpAddress();
     var request = http.MultipartRequest(
       'POST',
-      Uri.parse('http://192.168.1.6:8000/api/vendor/register/bylicense'),
+      Uri.parse('http://$ipAddress:8000/api/vendor/register/bylicense'),
     );
     request.headers['Authorization'] = 'Bearer $token';
     request.headers['Accept'] = 'application/json';

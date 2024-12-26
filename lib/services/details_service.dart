@@ -1,10 +1,15 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pricecompare/services/network_utils.dart';
 
 class DetailsService {
-  final String baseUrl = 'http://192.168.1.6:8000/api';
+  Future<String> getBaseUrl() async {
+    String ipAddress = await getLocalIpAddress();
+    return 'http://$ipAddress:8000/api';
+  }
 
   Future<Map<String, dynamic>?> fetchProductDetails(String productId) async {
+    String baseUrl = await getBaseUrl();
     final response = await http.get(Uri.parse('$baseUrl/product/$productId'));
 
     if (response.statusCode == 200) {
@@ -18,6 +23,7 @@ class DetailsService {
   }
 
   Future<Map<String, dynamic>?> fetchVendorDetails(String vendorId) async {
+    String baseUrl = await getBaseUrl();
     final response = await http.get(Uri.parse('$baseUrl/vendor/$vendorId'));
 
     if (response.statusCode == 200) {

@@ -16,18 +16,24 @@ import 'viewmodels/logout_viewmodel.dart';
 import 'viewmodels/vendor_register_viewmodel.dart';
 import 'viewmodels/product_viewmodel.dart';
 import 'package:pricecompare/services/product_service.dart';
+import 'package:pricecompare/services/network_utils.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final connectivityResult = await Connectivity().checkConnectivity();
   final hasInternet = connectivityResult != ConnectivityResult.none;
 
-  runApp(PriceCompareApp(initialRoute: hasInternet ? '/' : '/noInternet'));
+  String ipAddress = await getLocalIpAddress();
+  String baseUrl = 'http://$ipAddress:8000/api';
+
+  runApp(PriceCompareApp(initialRoute: hasInternet ? '/' : '/noInternet', baseUrl: baseUrl));
 }
 
 class PriceCompareApp extends StatelessWidget {
   final String initialRoute;
-  const PriceCompareApp({Key? key, required this.initialRoute})
+  final String baseUrl;
+
+  const PriceCompareApp({Key? key, required this.initialRoute, required this.baseUrl})
       : super(key: key);
 
   @override
@@ -38,7 +44,7 @@ class PriceCompareApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => LoginViewModel()),
         ChangeNotifierProvider(create: (_) => LogoutViewModel()),
         ChangeNotifierProvider(create: (_) => VendorViewModel()),
-        ChangeNotifierProvider(create: (_) => ProductViewModel(productService: ProductService(baseUrl: 'http://192.168.1.6:8000/api'))),
+        ChangeNotifierProvider(create: (_) => ProductViewModel(productService: ProductService(baseUrl: baseUrl))),
         ChangeNotifierProvider(create: (_) => VendorProductViewModel()),
         ChangeNotifierProvider(create: (_) => ProductSearchViewModel()), 
         ChangeNotifierProvider(create: (_) => DetailsViewModel()), 

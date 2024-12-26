@@ -1,11 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:pricecompare/services/network_utils.dart';
 
 class ProductSearchService {
-  final String baseUrl = 'http://192.168.1.6:8000/api/product/search';
+  Future<String> getBaseUrl() async {
+    String ipAddress = await getLocalIpAddress();
+    return 'http://$ipAddress:8000/api/product/search';
+  }
 
   Future<List<dynamic>> searchProducts(String query) async {
     try {
+      String baseUrl = await getBaseUrl();
       final response = await http.get(
         Uri.parse('$baseUrl?query=$query'),
         headers: {

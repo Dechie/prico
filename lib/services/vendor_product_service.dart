@@ -1,9 +1,14 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:pricecompare/services/network_utils.dart';
 
 class VendorProductService {
-  static const String baseUrl = 'http://192.168.1.6:8000/api';
+  Future<String> getBaseUrl() async {
+    String ipAddress = await getLocalIpAddress();
+    return 'http://$ipAddress:8000/api';
+  }
+
   Future<List<Product>> fetchProducts() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -13,6 +18,7 @@ class VendorProductService {
         throw Exception('Authorization token not found.');
       }
 
+      String baseUrl = await getBaseUrl();
       final response = await http.get(
         Uri.parse('$baseUrl/vendor/products'),
         headers: {
@@ -36,6 +42,7 @@ class VendorProductService {
       throw Exception('An error occurred: $e');
     }
   }
+
   Future<String?> deleteProduct(int productId) async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -45,6 +52,7 @@ class VendorProductService {
         return 'Authorization token not found.';
       }
 
+      String baseUrl = await getBaseUrl();
       final response = await http.delete(
         Uri.parse('$baseUrl/product/$productId'),
         headers: {
@@ -66,28 +74,28 @@ class VendorProductService {
   }
 }
 
- class Product {
-    final int productId;
-    final String title;
-    final String description;
-    final String image;
-    final String price;
+class Product {
+  final int productId;
+  final String title;
+  final String description;
+  final String image;
+  final String price;
 
-    Product({
-      required this.productId,
-      required this.title,
-      required this.description,
-      required this.image,
-      required this.price,
-    });
+  Product({
+    required this.productId,
+    required this.title,
+    required this.description,
+    required this.image,
+    required this.price,
+  });
 
-    factory Product.fromJson(Map<String, dynamic> json) {
-      return Product(
-        productId: json['id'],
-        title: json['title'],
-        description: json['description'],
-        image: json['image_urls'][0],
-        price: json['price'].toString(),
-      );
-    }
+  factory Product.fromJson(Map<String, dynamic> json) {
+    return Product(
+      productId: json['id'],
+      title: json['title'],
+      description: json['description'],
+      image: json['image_urls'][0],
+      price: json['price'].toString(),
+    );
   }
+}

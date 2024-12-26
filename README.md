@@ -1,6 +1,4 @@
-# pricecompare
-
-A new Flutter project.
+# PriceCompare
 
 ## Table of Contents
 - [Description](#description)
@@ -12,7 +10,7 @@ A new Flutter project.
 - [Acknowledgements](#acknowledgements)
 
 ## Description
-A brief description of what your project does and its purpose.
+Compare Prices of Products.
 
 ## Installation
 1. Clone the repository:
@@ -27,48 +25,24 @@ A brief description of what your project does and its purpose.
    - Price comparing platform that connects Vendor with Buyers
 
 3. **Installation**
-   - Clone this project and run the pp
    - Clone the backend side of the organization and follow the steps there to run the server
-
-```markdown
-# pricecompare
-
-A new Flutter project.
-
-## Table of Contents
-- [Description](#description)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Features](#features)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
-
-## Description
-A brief description of what your project does and its purpose.
-
-## Installation
-1. Clone the repository:
+     
+- 1. Clone the repository:
    ```sh
    git clone https://github.com/KURAZTEAM7/Mobile
    ```
-2. Navigate to the project directory:
+- 2. Navigate to the project directory:
    ```sh
    cd pricecompare
    ```
-3. Install dependencies:
+- 3. Install dependencies:
    ```sh
    flutter pub get 
    ```
-4. Run the app:
+- 4. Run the app:
    ```sh
    flutter run
    ```
-
-## Usage
-Instructions on how to use the application once it's set up.
-
 ## Contributing
 1. Fork the repository.
 2. Create a new branch (`git checkout -b feature-branch`).
@@ -81,7 +55,7 @@ Instructions on how to use the application once it's set up.
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## Contact
-Your Name - [your.email@example.com](amana67286535@gmail.com)
+Amanuel Solomon - amana67286535@gmail.com
 
 ## Acknowledgements
 - [Flutter](https://flutter.dev/)

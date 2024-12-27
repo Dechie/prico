@@ -1,21 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:pricecompare/views/splash/onboarding_view.dart';
+
+import 'no_internet.dart';
+import 'views/auth/guest.dart';
 import 'views/auth/login_view.dart';
 import 'views/auth/signup_view.dart';
-import 'views/home/home_view.dart';
 import 'views/home/guest_home_view.dart';
+import 'views/home/home_view.dart';
 import 'views/home/vendor_home_view.dart';
-import 'views/auth/guest.dart';
 import 'views/product/product_details_view.dart';
-import 'no_internet.dart';
 
 class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
         return MaterialPageRoute(
+          builder: (_) => OnBoardingPage(),
+        );
+      case '/start-page':
+        return MaterialPageRoute(
           builder: (_) => GuestView(),
           settings: RouteSettings(arguments: {'isReplacement': true}),
-          );
+        );
       case '/login':
         return MaterialPageRoute(builder: (_) => LoginView());
       case '/signup':
